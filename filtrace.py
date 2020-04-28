@@ -26,25 +26,6 @@ def filtrace(hodnoty, radky, sloupce):
             noveHodnoty[radek][sloupec] = novaHodnota
     return noveHodnoty
 
-def filtrace_min(hodnoty, radky, sloupce):
-    for radek in range(1, radky - 1):
-        for sloupec in range(1, sloupce - 1):
-            # zjisti se hodnoty aktualni zpracovavane bunky a hodnoty bunek v osmi/sousedstvi
-            stredBunka = hodnoty[radek][sloupec]
-            lhBunka = hodnoty[radek - 1][sloupec - 1]  # leva-horni bunka
-            hBunka = hodnoty[radek - 1][sloupec]  # horni bunka
-            phBunka = hodnoty[radek - 1][sloupec + 1]  # prava-horni bunka
-            pBunka = hodnoty[radek][sloupec + 1]
-            pdBunka = hodnoty[radek + 1][sloupec + 1]
-            dBunka = hodnoty[radek + 1][sloupec]
-            ldBunka = hodnoty[radek + 1][sloupec - 1]
-            lBunka = hodnoty[radek][sloupec - 1]
-            # vypocet prumeru ze vsech 9 hodnot - vyhlazovaci filtr
-            novaHodnota = (stredBunka + lhBunka + hBunka + phBunka + pBunka + pdBunka + dBunka + ldBunka + lBunka) / 9
-            # vypocitana hodnota pro aktualne zpracovavanou bunku rastru se zapise do pole noveHodnoty (na totoznou pozici)
-            noveHodnoty[radek][sloupec] = novaHodnota
-    return noveHodnoty
-
 try:
     # otevreni rastru - GDAL sam rozpozna, o ktery z podporovanych formatu
     # se jedna a podle toho pouzije prislusny driver
